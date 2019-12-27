@@ -1,2 +1,1 @@
-# UpSolve
-An automated resource to help in upsolving competitive programming problems from Hackerrank
+# UpSolve: An automated resource for upsolving problems from Hackerrank.
