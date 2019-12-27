@@ -11,18 +11,18 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from database import *
 
 #for chrome
-#driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 #chrome end
 
 #for firefox
-driver = webdriver.Firefox()
+# driver = webdriver.Firefox()
 #firefox end
 
 driver.get("https://www.hackerrank.com/login")
 window_before = driver.window_handles[0]
 
-Username = str(input('enter username: '))#'pranjalwalia77@gmail.com'
-Password = str(input('enter password: '))#'pranjalwalia2000'
+Username = 'sahej2004walia@gmail.com'#str(input('enter username: '))#'pranjalwalia77@gmail.com'
+Password = 'test_password'#str(input('enter password: '))#'pranjalwalia2000'
 
 
 user = driver.find_element_by_xpath('//*[@id="input-1"]')
@@ -49,35 +49,52 @@ if(check_login):
 url = 'https://www.hackerrank.com/domains/algorithms?badge_type=problem-solving'
 driver.execute_script("window.open('%s')" % url)
 
-
 #get the window handle after a new window has opened
 window_after = driver.window_handles[1]
 
-#prob_name = str(input('enter the problem name: '))
-
-try:
-    prob_name = str(input("Enter the problem name: "))
+prob_name = str(input("Enter the problem name: "))
     #attr = data[str(prob_name)]
 
-except:
-    driver.quit()
-    sys.exit('problem doesnt exist')
+# except:
+#     driver.quit()
+#     sys.exit('problem doesnt exist')
 
 #switch on to new child window
 driver.switch_to.window(window_after)
 body = driver.find_element_by_css_selector('body')
-for i in range(20):
-    body.send_keys(Keys.PAGE_DOWN)
+# for i in range(49):
+#     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+#     print(i)
+#     time.sleep(2)
+
+# try:
+#    #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr1='%s']" % attr))).click()
+#     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, '%s' % prob_name))).click()
+# except:
+#     driver.quit()
+#     sys.exit("Sorry, can't seem to find the solution!")
+
+i=0
+print('looping')
+
+while(1):    
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    try:
+        element = driver.find_element_by_partial_link_text(prob_name)
+        if(element):
+            element.click()
+            break
+    except:
+        pass
+    i+=1
     time.sleep(2)
 
-try:
-   #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr1='%s']" % attr))).click()
-    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, '%s' % prob_name))).click()
-except:
-    driver.quit()
-    sys.exit("Sorry, can't seem to find the solution!")
-
+    if(i>=50):
+        driver.quit()
+        sys.exit("Sorry, can't seem to find the solution!")
+    
 time.sleep(5)
+print('endloop')
 
 #get the window handle after a new window has opened
 board = driver.window_handles[1]
@@ -95,7 +112,7 @@ except:
     for button in conf:
         if(button.text == 'Reveal solutions'):
             button.click()
-    time.sleep(5)
+    time.sleep(3)
     conf2 = driver.find_elements_by_tag_name('button')
     for button in conf2:
         if(button.text == 'Yes'):
@@ -119,5 +136,4 @@ finally:
         f.close()
 
     sys.exit("Borat: Great Success!!")
-
 
