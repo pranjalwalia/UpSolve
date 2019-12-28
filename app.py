@@ -89,7 +89,7 @@ body = driver.find_element_by_css_selector('body')
 #     sys.exit("Sorry, can't seem to find the solution!")
 
 i=0
-print('looping')
+print('Searching....')
 
 while(1):    
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -108,7 +108,7 @@ while(1):
         sys.exit("Sorry, can't seem to find the solution!")
     
 time.sleep(5)
-print('endloop')
+print('Done!')
 
 #get the window handle after a new window has opened
 board = driver.window_handles[1]
