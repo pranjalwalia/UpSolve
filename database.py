@@ -16,5 +16,5 @@ for num in range(0, 450, 50):
             f.write(item['name'] + "\n")
             f.close()
 
-sys.exit('Problem names present in the code folder')
+sys.exit('Problem names are present at code/database.txt')
 
