@@ -3,13 +3,13 @@
 ###### Installion for Ubuntu:
 1. Install selenium using `pip3 install selenium` or `conda install selenium`, if you are using Anaconda.
 2. After cloning the repository, to install the drivers already provided, change to the drivers directory and execute the following instructions according to your browser preference.
-2. To run in chrome: 
+2. To run in chrome: press 1 when prompted for browser selection.
 ```
 sudo cp chromedriver usr/bin
 sudo cp chromedriver usr/local/bin
 ```
 
-4. To run in firefox:
+4. To run in firefox: press 2 when prompted for browser selection.
 ```
 sudo cp geckodriver usr/bin
 sudo cp geckodriver usr/local/bin
