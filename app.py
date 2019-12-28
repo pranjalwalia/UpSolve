@@ -11,18 +11,32 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 #for chrome
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 #chrome end
 
 #for firefox
 # driver = webdriver.Firefox()
 #firefox end
 
+while(1):
+    print('select your browser: ')
+    print('1. Chrome')
+    print('2. Firefox')
+    x = int(input())
+    if(x==1):
+        driver = webdriver.Chrome()
+        break
+    elif(x==2):
+        driver = webdriver.Firefox()
+        break
+    else:
+        print('Invalid Input, try again')
+
 driver.get("https://www.hackerrank.com/login")
 window_before = driver.window_handles[0]
 
-Username = 'sahej2004walia@gmail.com'#str(input('enter username: '))#'pranjalwalia77@gmail.com'
-Password = 'test_password'#str(input('enter password: '))#'pranjalwalia2000'
+Username = 'sahej2004walia@gmail.com'#str(input('enter username: '))
+Password = 'test_password'#str(input('enter password: '))
 
 
 user = driver.find_element_by_xpath('//*[@id="input-1"]')
