@@ -8,14 +8,17 @@
 sudo cp chromedriver usr/bin
 sudo cp chromedriver usr/local/bin
 ```
+Press 1 when prompted for browser selection for chrome. 
 
-4. To run in firefox:
+4. To run in firefox: 
 ```
 sudo cp geckodriver usr/bin
 sudo cp geckodriver usr/local/bin
 ```
-5. Make sure that you are using python 3.6 or above.
-6. Enter the command `python3 app.py` to run the script.
+Press 2 when prompted for browser selection for firefox.
+
+5. Make sure that you are using python3.6 or above.
+6. Enter `python3 app.py` in the project directory to run the script.
 7. Refer to [this]() for instructions as to how to use the script.
 
 ## [Project Report]()
