@@ -83,27 +83,30 @@ body = driver.find_element_by_css_selector('body')
 
 i=0
 print('Searching....')
+try:
+    while(1):    
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        try:
+            element = driver.find_element_by_partial_link_text(prob_name)
+            if(element):
+                element.click()
+                break
+        except:
+            pass
+        i+=1
 
-while(1):    
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    try:
-        element = driver.find_element_by_partial_link_text(prob_name)
-        if(element):
-            element.click()
-            break
-    except:
-        pass
-    i+=1
+        time.sleep(2)
 
-    time.sleep(2)
+        if(i>=50):
+            driver.quit()
+            sys.exit("Sorry, can't seem to find the solution!")
+        
+    time.sleep(5)
 
-    if(i>=50):
-        driver.quit()
-        sys.exit("Sorry, can't seem to find the solution!")
-    
-time.sleep(5)
-
-print('Done!')
+    print('Done!')
+except:
+    print('..Search terminated..')
+    sys.exit('Exitting...')
 
 #get the window handle after a new window has opened
 board = driver.window_handles[1]
@@ -138,6 +141,7 @@ finally:
     driver.switch_to.window(code)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/pre")))
     element = driver.find_element_by_css_selector('body')
+    time.sleep(3)
     element.send_keys(Keys.CONTROL + 'a')
 
     filename = "code/%s.txt" % prob_name
