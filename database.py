@@ -10,11 +10,11 @@ for num in range(0, 450, 50):
         f"https://www.hackerrank.com/rest/contests/master/tracks/algorithms/challenges?offset={num}&limit=50&track_login=true", headers=headers).json()
     for item in r['models']:
         print(item['name'])
-        filename = "code/database.txt"
+        filename = "code/problems.txt"
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         with open(filename, "a") as f:
             f.write(item['name'] + "\n")
             f.close()
 
-sys.exit('Problem names are present at code/database.txt')
+sys.exit('Problem names are present at code/problems.txt')
 
