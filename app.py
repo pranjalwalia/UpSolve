@@ -30,13 +30,13 @@ while(1):
         driver = webdriver.Firefox()
         break
     else:
-        print('Invalid Input, try again')
+        print('Invalid Input, try again...')
 
 driver.get("https://www.hackerrank.com/login")
 window_before = driver.window_handles[0]
 
-Username = 'sahej2004walia@gmail.com'#str(input('enter username: '))
-Password = 'test_password'#str(input('enter password: '))
+Username = str(input('Enter Username: '))
+Password = str(input('Enter Password: '))
 
 
 user = driver.find_element_by_xpath('//*[@id="input-1"]')
@@ -51,14 +51,15 @@ for button in buttons:
     if(button.text == 'Log In'):
         button.click()
 
-time.sleep(5)
+time.sleep(3)
 
 check_login = driver.find_elements_by_xpath("//*[contains(text(), 'Invalid login or password. Please try again.')]")
 
-
 if(check_login):
+    print('Sorry,Invalid login!, Launch Again')
+    time.sleep(2)
     driver.quit()
-    sys.exit('Sorry,Invalid login!, Launch Again')
+    sys.exit()
 
 url = 'https://www.hackerrank.com/domains/algorithms?badge_type=problem-solving'
 driver.execute_script("window.open('%s')" % url)
@@ -69,17 +70,9 @@ window_after = driver.window_handles[1]
 prob_name = str(input("Enter the problem name: "))
     #attr = data[str(prob_name)]
 
-# except:
-#     driver.quit()
-#     sys.exit('problem doesnt exist')
-
 #switch on to new child window
 driver.switch_to.window(window_after)
 body = driver.find_element_by_css_selector('body')
-# for i in range(49):
-#     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-#     print(i)
-#     time.sleep(2)
 
 # try:
 #    #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr1='%s']" % attr))).click()
@@ -101,6 +94,7 @@ while(1):
     except:
         pass
     i+=1
+
     time.sleep(2)
 
     if(i>=50):
@@ -108,6 +102,7 @@ while(1):
         sys.exit("Sorry, can't seem to find the solution!")
     
 time.sleep(5)
+
 print('Done!')
 
 #get the window handle after a new window has opened
@@ -126,7 +121,9 @@ except:
     for button in conf:
         if(button.text == 'Reveal solutions'):
             button.click()
+
     time.sleep(3)
+    
     conf2 = driver.find_elements_by_tag_name('button')
     for button in conf2:
         if(button.text == 'Yes'):
