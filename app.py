@@ -3,6 +3,7 @@ import os
 from selenium import webdriver
 from time import sleep
 import time
+import getpass
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -33,7 +34,7 @@ while(1):
     elif(x==2):
         driver = webdriver.Firefox()
         break
-        
+
     else:
         print('Invalid Input, try again...')
 '''
@@ -44,8 +45,7 @@ window_before = driver.window_handles[0]
 
 
 Username = str(input('Enter Username: '))
-Password = str(input('Enter Password: '))
-
+Password = getpass.getpass('Enter the Password: ')
 
 user = driver.find_element_by_xpath('//*[@id="input-1"]')
 user.send_keys(Username)
@@ -114,7 +114,7 @@ try:
             driver.quit()
             sys.exit("Sorry, can't seem to find the solution!")
         
-    time.sleep(5)
+    time.sleep(3)
 
     print('Done!')
 
@@ -141,7 +141,7 @@ except:
         if(button.text == 'Reveal solutions'):
             button.click()
 
-    time.sleep(3)
+    time.sleep(2)
     
     conf2 = driver.find_elements_by_tag_name('button')
     for button in conf2:
