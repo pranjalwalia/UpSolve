@@ -11,29 +11,37 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 #for chrome
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 #chrome end
 
 #for firefox
 # driver = webdriver.Firefox()
 #firefox end
 
+'''
 while(1):
     print('select your browser: ')
     print('1. Chrome')
     print('2. Firefox')
+
     x = int(input())
+
     if(x==1):
         driver = webdriver.Chrome()
         break
+
     elif(x==2):
         driver = webdriver.Firefox()
         break
+        
     else:
         print('Invalid Input, try again...')
+'''
 
 driver.get("https://www.hackerrank.com/login")
 window_before = driver.window_handles[0]
+
+
 
 Username = str(input('Enter Username: '))
 Password = str(input('Enter Password: '))
@@ -61,6 +69,8 @@ if(check_login):
     driver.quit()
     sys.exit()
 
+
+
 url = 'https://www.hackerrank.com/domains/algorithms?badge_type=problem-solving'
 driver.execute_script("window.open('%s')" % url)
 
@@ -70,8 +80,10 @@ window_after = driver.window_handles[1]
 prob_name = str(input("Enter the problem name: "))
     #attr = data[str(prob_name)]
 
+
 #switch on to new child window
 driver.switch_to.window(window_after)
+
 body = driver.find_element_by_css_selector('body')
 
 # try:
@@ -83,6 +95,7 @@ body = driver.find_element_by_css_selector('body')
 
 i=0
 print('Searching....')
+
 try:
     while(1):    
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -104,14 +117,17 @@ try:
     time.sleep(5)
 
     print('Done!')
+
 except:
     print('..Search terminated..')
     sys.exit('Exitting...')
+
 
 #get the window handle after a new window has opened
 board = driver.window_handles[1]
 #switch on to new child window
 driver.switch_to.window(board)
+
 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr1='topscorers']"))).click()
 
 time.sleep(3)
@@ -149,6 +165,7 @@ finally:
     with open(filename, "w") as f:
         f.write(element.text)
         f.close()
+
 
     sys.exit("Borat: Great Success!!")
 
