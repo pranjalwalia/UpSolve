@@ -74,7 +74,7 @@ if(check_login):
 url = 'https://www.hackerrank.com/domains/algorithms?badge_type=problem-solving'
 driver.execute_script("window.open('%s')" % url)
 
-#get the window handle after a new window has opened
+#get the window opened in the new tab
 window_after = driver.window_handles[1]
 
 prob_name = str(input("Enter the problem name: "))
@@ -94,7 +94,7 @@ body = driver.find_element_by_css_selector('body')
 #     sys.exit("Sorry, can't seem to find the solution!")
 
 i=0
-print('Searching....')
+print('Searching...')
 
 try:
     while(1):    
@@ -120,20 +120,51 @@ try:
 
 except:
     print('..Search terminated..')
-    sys.exit('Exitting...')
+    sys.exit('Exiting..')
 
 
-#get the window handle after a new window has opened
+#get the window handle that has opened in the new tab
 board = driver.window_handles[1]
 #switch on to new child window
 driver.switch_to.window(board)
 
 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr1='topscorers']"))).click()
 
+time.sleep(2)
+#but = driver.find_element_by_xpath("//span[@class = 'Select-arrow-zone']")
+but = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[@class = 'Select-arrow-zone']")))
+but.click()
+
 time.sleep(3)
 
+but1 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[@aria-label = '100']")))
+print('Listing the Top 100 Submissions')
+but1.click()
+
+time.sleep(3)
+
+lang = ''       #cannot be empty
+
+'''
+Available Options for lang are, just copy and paste any one according to your language preference:
+
+cpp 
+python3
+python
+java
+java8
+csharp
+javascript
+ruby
+'''
+
 try:
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']"))).click()
+    try:
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='%s']" % lang))).click()
+
+    except:
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']"))).click()
+
 
 except:
     conf = driver.find_elements_by_tag_name('button')
@@ -148,11 +179,12 @@ except:
         if(button.text == 'Yes'):
             button.click()
             try:
-                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']"))).click()
+                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='%s']" % lang))).click()
             except:
-                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='python3']"))).click()
+                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']"))).click()
 
 finally:
+    time.sleep(2)
     code = driver.window_handles[2]
     driver.switch_to.window(code)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/pre")))
@@ -160,7 +192,7 @@ finally:
     time.sleep(3)
     element.send_keys(Keys.CONTROL + 'a')
 
-    filename = "code/%s.txt" % prob_name
+    filename = "code/%s_%s.txt" % (prob_name , lang)
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, "w") as f:
         f.write(element.text)
