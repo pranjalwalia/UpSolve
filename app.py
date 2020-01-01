@@ -12,14 +12,13 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 #for chrome
-driver = webdriver.Chrome()
+#driver = webdriver.Chrome()
 #chrome end
 
 #for firefox
-# driver = webdriver.Firefox()
+#driver = webdriver.Firefox()
 #firefox end
 
-'''
 while(1):
     print('select your browser: ')
     print('1. Chrome')
@@ -37,15 +36,24 @@ while(1):
 
     else:
         print('Invalid Input, try again...')
-'''
+
 
 driver.get("https://www.hackerrank.com/login")
 window_before = driver.window_handles[0]
 
 
+'''
+# for a faster experience, set this for a default account.
+# Comment out the 2 lines of code below after this.
+
+Username = ''
+Password = ''
+'''
+
 
 Username = str(input('Enter Username: '))
 Password = getpass.getpass('Enter the Password: ')
+
 
 user = driver.find_element_by_xpath('//*[@id="input-1"]')
 user.send_keys(Username)
@@ -110,17 +118,17 @@ try:
 
         time.sleep(2)
 
-        if(i>=50):
+        if(i>=45):
             driver.quit()
             sys.exit("Sorry, can't seem to find the solution!")
         
-    time.sleep(3)
+    time.sleep(5)
 
     print('Done!')
 
 except:
     print('..Search terminated..')
-    sys.exit('Exiting..')
+    sys.exit("Exiting..Can't seem to find the solution")
 
 
 #get the window handle that has opened in the new tab
@@ -143,62 +151,89 @@ but1.click()
 
 time.sleep(3)
 
-lang = ''       #cannot be empty
+lang = ''       # Do not not leave emmpty, else default language(cpp) is assumed
 
 '''
-Available Options for lang are, just copy and paste any one according to your language preference:
+Available Options( Case Sensitive ) for lang are, just copy and paste any one according to your language preference:
 
 cpp 
 python3
+c
 python
 java
+go
 java8
 csharp
 javascript
+php
 ruby
+haskell
+bash
+scala
 '''
 
-try:
+flag = 1
+
+check = 0
+
+reveal = driver.find_elements_by_tag_name('button')
+for button in reveal:
+        if(button.text == 'Reveal solutions'):
+            check = 1
+            print('reveal button located')
+time.sleep(5)
+
+if(check == 0):
     try:
+        flag = 1
+        print('Looking for a %s submission' % lang)
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='%s']" % lang))).click()
 
     except:
+        flag = 0
+        print("Couldn't find a submission in %s , looking for it in cpp" % lang)
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']"))).click()
 
 
-except:
-    conf = driver.find_elements_by_tag_name('button')
-    for button in conf:
-        if(button.text == 'Reveal solutions'):
-            button.click()
+elif(check == 1):
+            print("Revealing Submissions")
+            for button in reveal:
+                if(button.text == 'Reveal solutions'):
+                    button.click()
+            conf2 = driver.find_elements_by_tag_name('button')
+            for button in conf2:
+                if(button.text == 'Yes'):
+                    button.click()
+            time.sleep(5)
 
-    time.sleep(2)
-    
-    conf2 = driver.find_elements_by_tag_name('button')
-    for button in conf2:
-        if(button.text == 'Yes'):
-            button.click()
             try:
+                flag = 1
+                print('Looking for a %s submission' % lang)
                 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='%s']" % lang))).click()
             except:
-                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']"))).click()
+                flag = 0
+                print("Couldn't find a submission in %s , looking for it in cpp" % lang)
+                e = WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.XPATH, "//a[@data-attr2='cpp']")))
+                driver.execute_script("arguments[0].click();", e)
 
-finally:
-    time.sleep(2)
-    code = driver.window_handles[2]
-    driver.switch_to.window(code)
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/pre")))
-    element = driver.find_element_by_css_selector('body')
-    time.sleep(3)
-    element.send_keys(Keys.CONTROL + 'a')
 
+time.sleep(2)
+code = driver.window_handles[2]
+driver.switch_to.window(code)
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/pre")))
+element = driver.find_element_by_css_selector('body')
+time.sleep(3)
+element.send_keys(Keys.CONTROL + 'a')
+if(flag==1):
     filename = "code/%s_%s.txt" % (prob_name , lang)
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    with open(filename, "w") as f:
-        f.write(element.text)
-        f.close()
+else:
+    filename = "code/%s_cpp.txt" % (prob_name)
+
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+with open(filename, "w") as f:
+    f.write(element.text)
+    f.close()
 
 
-    sys.exit("Borat: Great Success!!")
-
+sys.exit("Borat: Great Success!!")
 
