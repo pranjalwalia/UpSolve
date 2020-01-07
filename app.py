@@ -140,14 +140,14 @@ WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@data
 
 time.sleep(2)
 #but = driver.find_element_by_xpath("//span[@class = 'Select-arrow-zone']")
-but = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[@class = 'Select-arrow-zone']")))
-but.click()
+button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[@class = 'Select-arrow-zone']")))
+button.click()
 
 time.sleep(3)
 
-but1 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[@aria-label = '100']")))
+sorter = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[@aria-label = '100']")))
 print('Listing the Top 100 Submissions')
-but1.click()
+sorter.click()
 
 time.sleep(3)
 
