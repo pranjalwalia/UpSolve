@@ -27,3 +27,4 @@ Press 2 when prompted for browser selection for firefox.
 
 ## Contributing:
 visit [this](https://github.com/masterchief01/UpSolve/issues) page to report issues in the project, contribute or request a new feature.
+####### PS. If the documentation does not load on github as the file is slightly large for a pdf, just download the pdf.
