@@ -21,7 +21,7 @@ Press 2 when prompted for browser selection for firefox.
 6. Enter `python3 app.py` in the project directory to run the script.
 7. Refer to [this]() for instructions as to how to use the script.
 
-## [Project Report]()
+## [Project Report](https://github.com/masterchief01/UpSolve/blob/master/UpSolve.pdf)
 ## [Demo Video]()
 
 ## Contributing:
