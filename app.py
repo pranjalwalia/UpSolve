@@ -152,6 +152,10 @@ sorter.click()
 time.sleep(3)
 
 lang = ''       # Do not not leave emmpty, else default language(cpp) is assumed
+if(lang == ''):
+    print("Default Language is selected")
+else:
+    print("Selected language is %s" %(lang))
 
 '''
 Available Options( Case Sensitive ) for lang are, just copy and paste any one according to your language preference:
