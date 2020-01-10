@@ -29,7 +29,7 @@ There is a chance that an error may arise here, due to lack of permissions even 
 ## [Project Report](https://github.com/masterchief01/UpSolve/blob/master/UpSolve.pdf)
 ## [Demo Video 1: Default Mode](https://www.youtube.com/watch?v=tECo12dcGfI)
 ## [Demo Video 2: Language Input in the script](https://www.youtube.com/watch?v=t7UQTt1M6j4)
-### For some screenshots of the working app, refer to the Project Report.
+#### For some screenshots of the working app, refer to the Project Report.
 
 ## Contributing:
 Visit [this](https://github.com/masterchief01/UpSolve/issues) page to report issues in the project, contribute or request a new feature.
