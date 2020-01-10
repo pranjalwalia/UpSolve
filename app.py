@@ -19,6 +19,14 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 #driver = webdriver.Firefox()
 #firefox end
 
+
+#Default run
+'''
+driver = webdriver.Chrome(
+
+'''
+
+
 while(1):
     print('select your browser: ')
     print('1. Chrome')
@@ -40,6 +48,7 @@ while(1):
 
 driver.get("https://www.hackerrank.com/login")
 window_before = driver.window_handles[0]
+
 
 
 '''
@@ -151,7 +160,7 @@ sorter.click()
 
 time.sleep(3)
 
-lang = ''       # Do not not leave emmpty, else default language(cpp) is assumed
+lang = ''           # Do not not leave emmpty, else default language(cpp) is assumed
 if(lang == ''):
     print("Default Language is selected")
 else:
