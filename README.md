@@ -20,7 +20,7 @@ Press 2 when prompted for browser selection for firefox.
 
 There is a chance that an error may arise here, due to lack of permissions even after `sudo`, in that case, please  refer to [this](https://askubuntu.com/questions/24952/how-to-copy-files-into-usr-local-permission-denied).
 
-#### Before running the script, Make sure the driver(here 'geckodriver' or 'chromedriver' ) is in the folders /usr/bin and /usr/local/bin.
+#### Before running the script, make sure the driver(here 'geckodriver' or 'chromedriver' ) is in the folders /usr/bin and /usr/local/bin.
 
 5. Make sure that you are using python3.6 or above.
 6. Enter `python3 app.py` in the project directory to run the script.
@@ -34,4 +34,4 @@ There is a chance that an error may arise here, due to lack of permissions even 
 Visit [this](https://github.com/masterchief01/UpSolve/issues) page to report issues in the project, contribute or request a new feature.
 
 
-###### PS. If the documentation does not load on github as the file is slightly large for a pdf, just download the pdf.
+##### PS. If the documentation does not load on github as the file is slightly large for a pdf, just download the pdf.
