@@ -22,8 +22,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 #Default run
 '''
-driver = webdriver.Chrome(
-
+driver = webdriver.Chrome
 '''
 
 
