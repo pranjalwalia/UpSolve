@@ -24,7 +24,7 @@ There is a chance that an error may arise here, due to lack of permissions even 
 
 5. Make sure that you are using python3.6 or above.
 6. Enter `python3 app.py` in the project directory to run the script.
-7. Refer to [this]() for instructions as to how to use the script.
+7. Refer to [this](https://github.com/masterchief01/UpSolve) for instructions as to how to use the script.
 
 ## [Project Report](https://github.com/masterchief01/UpSolve/blob/master/UpSolve.pdf)
 ## [Demo Video 1: Default Mode](https://www.youtube.com/watch?v=tECo12dcGfI)
