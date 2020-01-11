@@ -18,7 +18,7 @@ sudo cp geckodriver usr/local/bin
 ```
 Press 2 when prompted for browser selection for firefox.
 
-There is a chance that an error may arise here, due to lack of permissions even after `sudo`, in that case, please  refer to [this](https://askubuntu.com/questions/24952/how-to-copy-files-into-usr-local-permission-denied).
+There is a chance that an error may arise here, due to lack of permissions, in that case, please  refer to [this](https://askubuntu.com/questions/24952/how-to-copy-files-into-usr-local-permission-denied).
 
 #### Before running the script, make sure the driver(here 'geckodriver' or 'chromedriver' ) is in the folders /usr/bin and /usr/local/bin.
 
